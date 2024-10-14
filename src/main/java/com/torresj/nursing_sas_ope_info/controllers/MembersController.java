@@ -2,7 +2,6 @@ package com.torresj.nursing_sas_ope_info.controllers;
 
 import com.torresj.nursing_sas_ope_info.dtos.MemberDto;
 import com.torresj.nursing_sas_ope_info.services.MembersService;
-import com.torresj.nursing_sas_ope_info.services.SasDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -65,7 +64,7 @@ public class MembersController {
     public ResponseEntity<MemberDto> getChannel(@Parameter(description = "Member id") @PathVariable int id) throws IOException {
         log.info("Getting member {}", id);
         var member = membersService.getMember(id);
-        log.info("Channel {} found: {}",id, member);
+        log.info("Member {} found: {}",id, member);
         return ResponseEntity.ok(member);
     }
 }

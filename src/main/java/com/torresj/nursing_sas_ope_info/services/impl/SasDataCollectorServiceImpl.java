@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -44,6 +44,7 @@ public class SasDataCollectorServiceImpl implements SasDataService {
                             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"));
 
     @Override
+    @Cacheable("members")
     public Map<Integer, MemberDto> getDefinitiveListMembers() throws IOException {
         log.info("Calling SAS page to get members data");
         Map<Integer, MemberDto> members = new HashMap<>();
