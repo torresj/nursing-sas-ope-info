@@ -1,6 +1,7 @@
 package com.torresj.nursing_sas_ope_info.controllers;
 
 import com.torresj.nursing_sas_ope_info.dtos.MemberDto;
+import com.torresj.nursing_sas_ope_info.dtos.MemberResponseDto;
 import com.torresj.nursing_sas_ope_info.services.MembersService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -34,11 +35,11 @@ public class MembersController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = MemberDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = MemberResponseDto.class)))
                             }),
             })
     @GetMapping
-    public ResponseEntity<List<MemberDto>> getMembers(
+    public ResponseEntity<List<MemberResponseDto>> getMembers(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) throws IOException {
         log.info("Getting members by filter {}", filter);
@@ -56,12 +57,12 @@ public class MembersController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            schema = @Schema(implementation = MemberDto.class))
+                                            schema = @Schema(implementation = MemberResponseDto.class))
                             }),
                     @ApiResponse(responseCode = "404", description = "Not found", content = @Content),
             })
     @GetMapping("/{id}")
-    public ResponseEntity<MemberDto> getChannel(@Parameter(description = "Member id") @PathVariable int id) throws IOException {
+    public ResponseEntity<MemberResponseDto> getChannel(@Parameter(description = "Member id") @PathVariable int id) throws IOException {
         log.info("Getting member {}", id);
         var member = membersService.getMember(id);
         log.info("Member {} found: {}",id, member);

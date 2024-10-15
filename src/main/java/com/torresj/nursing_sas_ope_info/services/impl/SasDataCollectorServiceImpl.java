@@ -1,6 +1,7 @@
 package com.torresj.nursing_sas_ope_info.services.impl;
 
 import com.torresj.nursing_sas_ope_info.dtos.MemberDto;
+import com.torresj.nursing_sas_ope_info.dtos.ScoreDto;
 import com.torresj.nursing_sas_ope_info.services.SasDataService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class SasDataCollectorServiceImpl implements SasDataService {
 
-    private static final String SAS_URL = "https://ws027.sspa.juntadeandalucia.es/profesionales/oep_listados/listado_sup.asp?idproceso=71106&idprocesoant=&situacion=S&pageno=%d&orden=ORD_TOTAL&t=L&convocatoria=5000&estado=listado&provisional=0";
+    private static final String SAS_URL_DEFINITIVE = "https://ws027.sspa.juntadeandalucia.es/profesionales/oep_listados/listado_sup.asp?idproceso=71106&idprocesoant=&situacion=S&pageno=%d&orden=ORD_TOTAL&t=L&convocatoria=5000&estado=listado&provisional=0";
+    private static final String SAS_URL_PROVISIONAL = "https://ws027.sspa.juntadeandalucia.es/profesionales/oep_listados/listado_sup.asp?idproceso=71106&idprocesoant=&situacion=S&pageno=%d&orden=ORD_TOTAL&t=L&convocatoria=5000&estado=listado&provisional=1";
 
     private static final Map<String, String> HEADERS =
             Map.ofEntries(
@@ -44,24 +46,29 @@ public class SasDataCollectorServiceImpl implements SasDataService {
                             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"));
 
     @Override
-    @Cacheable("members")
+    @Cacheable("finalMembers")
     public Map<Integer, MemberDto> getDefinitiveListMembers() throws IOException {
-        log.info("Calling SAS page to get members data");
+        log.info("Calling SAS page to get definitive members data");
         Map<Integer, MemberDto> members = new HashMap<>();
         for(int i=1;i<=16;i++){
-            addMemberPage(members,i);
+            addMemberPage(members,i,SAS_URL_DEFINITIVE);
         }
         return members;
     }
 
     @Override
-    public Map<Integer, MemberDto> getProvisionalListMembers() {
-        return Map.of();
+    @Cacheable("provisionalMembers")
+    public Map<Integer, MemberDto> getProvisionalListMembers() throws IOException {
+        log.info("Calling SAS page to get provisional members data");
+        Map<Integer, MemberDto> members = new HashMap<>();
+        for(int i=1;i<=16;i++){
+            addMemberPage(members,i,SAS_URL_PROVISIONAL);
+        }
+        return members;
     }
 
-    private void addMemberPage(Map<Integer, MemberDto> members, int page) throws IOException {
-        String url = String.format(SAS_URL,page);
-        var webPage = Jsoup.connect(url).headers(HEADERS).get();
+    private void addMemberPage(Map<Integer, MemberDto> members, int page, String url) throws IOException {
+        var webPage = Jsoup.connect(String.format(url,page)).headers(HEADERS).get();
         var lines = webPage.select("tr");
 
         for(int i=1; i<lines.size(); i++){
@@ -79,6 +86,6 @@ public class SasDataCollectorServiceImpl implements SasDataService {
         float total = Float.parseFloat(fields.get(3).text().replace(",","."));
         float op = Float.parseFloat(fields.get(4).text().replace(",","."));
         float con = Float.parseFloat(fields.get(5).text().replace(",","."));
-        return new MemberDto(dni,name,surname,shift,total,op,con,position);
+        return new MemberDto(dni,name,surname,shift,new ScoreDto(total,op,con,position));
     }
 }

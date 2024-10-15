@@ -1,10 +1,11 @@
 package com.torresj.nursing_sas_ope_info.dtos;
 
-public record MemberDto(
+public record MemberResponseDto(
         String dni,
         String name,
         String surname,
         String shift,
-        ScoreDto score
+        ScoreDto provisionalScore,
+        ScoreDto finalScore
 ) {
 }

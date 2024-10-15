@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface SasDataService {
     Map<Integer, MemberDto> getDefinitiveListMembers() throws IOException;
-    Map<Integer, MemberDto> getProvisionalListMembers();
+    Map<Integer, MemberDto> getProvisionalListMembers() throws IOException;
 }
