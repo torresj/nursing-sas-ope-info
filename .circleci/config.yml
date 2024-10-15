@@ -63,11 +63,11 @@ jobs:
       # Install chart
       - run:
           name: Install chart
-          command: helm upgrade nursing-sas-ope-info helm/nursing-sas-ope-info -n football --install --kubeconfig=helm/kubeconfig
+          command: helm upgrade nursing-sas-ope-info helm/nursing-sas-ope-info -n sas --install --kubeconfig=helm/kubeconfig
       # Check deployment
       - run:
           name: Check deployment
-          command: kubectl rollout status deployment nursing-sas-ope-info --timeout=180s -n football --kubeconfig=helm/kubeconfig
+          command: kubectl rollout status deployment nursing-sas-ope-info --timeout=180s -n sas --kubeconfig=helm/kubeconfig
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
