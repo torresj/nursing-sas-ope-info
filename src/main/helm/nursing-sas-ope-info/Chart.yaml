@@ -1,6 +1,6 @@
 apiVersion: v2
-name: nursing_sas_ope_info
-description: A Helm chart for nursing_sas_ope_info
+name: nursing-sas-ope-info
+description: A Helm chart for nursing-sas-ope-info
 
 # A chart can be either an 'application' or a 'library' chart.
 #

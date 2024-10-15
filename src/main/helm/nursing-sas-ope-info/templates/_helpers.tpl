@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "nursing_sas_ope_info.name" -}}
+{{- define "nursing-sas-ope-info.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "nursing_sas_ope_info.fullname" -}}
+{{- define "nursing-sas-ope-info.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "nursing_sas_ope_info.chart" -}}
+{{- define "nursing-sas-ope-info.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "nursing_sas_ope_info.labels" -}}
-helm.sh/chart: {{ include "nursing_sas_ope_info.chart" . }}
-{{ include "nursing_sas_ope_info.selectorLabels" . }}
+{{- define "nursing-sas-ope-info.labels" -}}
+helm.sh/chart: {{ include "nursing-sas-ope-info.chart" . }}
+{{ include "nursing-sas-ope-info.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "nursing_sas_ope_info.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "nursing_sas_ope_info.name" . }}
+{{- define "nursing-sas-ope-info.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "nursing-sas-ope-info.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "nursing_sas_ope_info.serviceAccountName" -}}
+{{- define "nursing-sas-ope-info.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "nursing_sas_ope_info.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "nursing-sas-ope-info.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

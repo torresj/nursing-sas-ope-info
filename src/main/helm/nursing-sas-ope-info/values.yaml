@@ -6,13 +6,13 @@ replicaCount: 2
 
 image:
   repository: registry.torresj.com
-  name: nursing_sas_ope_info
+  name: nursing-sas-ope-info
   version: @project.version@
   pullPolicy: IfNotPresent
 
 imagePullSecrets: regcred
-nameOverride: "nursing_sas_ope_info"
-fullnameOverride: "nursing_sas_ope_info"
+nameOverride: "nursing-sas-ope-info"
+fullnameOverride: "nursing-sas-ope-info"
 
 podAnnotations: {}
 

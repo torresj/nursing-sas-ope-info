@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "nursing_sas_ope_info.fullname" . }}-ingress
+  name: {{ include "nursing-sas-ope-info.fullname" . }}-ingress
   labels:
-    {{- include "nursing_sas_ope_info.labels" . | nindent 4 }}
+    {{- include "nursing-sas-ope-info.labels" . | nindent 4 }}
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.ingress.tls.cert_manager.cluster_issuer }}
     nginx.ingress.kubernetes.io/limit-rps: "10"
@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.ingress.host }}
-      secretName: {{ include "nursing_sas_ope_info.fullname" . }}-tls-secret
+      secretName: {{ include "nursing-sas-ope-info.fullname" . }}-tls-secret
   rules:
       - host: {{ .Values.ingress.host }}
         http:
@@ -22,7 +22,7 @@ spec:
               pathType: Prefix
               backend:
                 service:
-                  name: {{ include "nursing_sas_ope_info.fullname" . }}
+                  name: {{ include "nursing-sas-ope-info.fullname" . }}
                   port:
                     number: {{ .Values.service.port }}
 {{- end }}
