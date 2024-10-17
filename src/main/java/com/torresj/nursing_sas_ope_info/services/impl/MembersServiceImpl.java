@@ -6,6 +6,7 @@ import com.torresj.nursing_sas_ope_info.services.MembersService;
 import com.torresj.nursing_sas_ope_info.services.SasDataService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class MembersServiceImpl implements MembersService {
         var filteredMembers = sasDataService.getDefinitiveListMembers()
                 .values()
                 .stream()
-                .filter(member -> member.surname().toLowerCase().contains(filter.toLowerCase()))
+                .filter(member -> member.surname().toLowerCase().contains(StringUtils.stripAccents(filter).toLowerCase()))
                 .map(memberDto -> membersToResponseDto(findMemberInProvisionalList(memberDto), memberDto))
                 .limit(100)
                 .toList();
