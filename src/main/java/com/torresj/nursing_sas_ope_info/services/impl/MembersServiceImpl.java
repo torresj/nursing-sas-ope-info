@@ -24,6 +24,7 @@ public class MembersServiceImpl implements MembersService {
         var filteredMembers = sasDataService.getDefinitiveListMembers()
                 .values()
                 .stream()
+                .limit(100)
                 .filter(member -> member.surname().toLowerCase().contains(filter.toLowerCase()))
                 .map(memberDto -> membersToResponseDto(findMemberInProvisionalList(memberDto), memberDto))
                 .toList();
