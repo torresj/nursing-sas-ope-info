@@ -1,6 +1,6 @@
-package com.torresj.nursing_sas_ope_info.dtos;
+package com.torresj.nursing_sas_ope_info.dtos.ope;
 
-public record MemberResponseDto(
+public record NurseOpeResponseDto(
         String dni,
         String name,
         String surname,

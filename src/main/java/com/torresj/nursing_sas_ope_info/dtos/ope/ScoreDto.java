@@ -1,4 +1,4 @@
-package com.torresj.nursing_sas_ope_info.dtos;
+package com.torresj.nursing_sas_ope_info.dtos.ope;
 
 public record ScoreDto(
         float total,
