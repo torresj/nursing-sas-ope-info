@@ -82,7 +82,7 @@ public class SasDataCollectorServiceImpl implements SasDataService {
         log.info("Calling SAS page to get provisional Bolsa nurses data");
         Set<NurseBolsaDto> nurses = new HashSet<>();
 
-        IntStream.range(1, 151)
+        IntStream.range(1, 152)
                 .parallel()
                 .forEach(i -> addBolsaNursePage(nurses,i, SAS_BOLSA_URL_PROVISIONAL));
 
