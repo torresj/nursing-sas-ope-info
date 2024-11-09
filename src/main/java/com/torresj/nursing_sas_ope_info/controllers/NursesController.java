@@ -3,7 +3,6 @@ package com.torresj.nursing_sas_ope_info.controllers;
 import com.torresj.nursing_sas_ope_info.dtos.bolsa.NurseBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.ope.NurseOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
-import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

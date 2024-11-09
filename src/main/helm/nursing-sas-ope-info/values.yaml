@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 2
+replicaCount: 3
 
 image:
   repository: registry.torresj.com
@@ -33,6 +33,11 @@ cloud:
     url:
     username:
     password:
+
+db:
+  db_name:
+  db_user:
+  db_password:
 
 ingress:
   enabled: true

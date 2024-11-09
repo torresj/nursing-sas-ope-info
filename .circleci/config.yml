@@ -63,7 +63,7 @@ jobs:
       # Install chart
       - run:
           name: Install chart
-          command: helm upgrade nursing-sas-ope-info helm/nursing-sas-ope-info -n sas --install --kubeconfig=helm/kubeconfig
+          command: helm upgrade nursing-sas-ope-info helm/nursing-sas-ope-info -n sas --set db.db_user=$DB_USER,db.db_name=$DB_NAME,db.db_password=$DB_PASSWORD --install --kubeconfig=helm/kubeconfig
       # Check deployment
       - run:
           name: Check deployment
