@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @Getter
-public class NurseOpeEntity {
+public class NurseOpeDefinitiveEntity {
     @Id
     @Column(updatable = false)
     private Integer id;

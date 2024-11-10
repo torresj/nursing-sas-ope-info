@@ -1,14 +1,13 @@
 package com.torresj.nursing_sas_ope_info.services.impl;
 
-import com.torresj.nursing_sas_ope_info.dtos.bolsa.ExclusionReasonDto;
 import com.torresj.nursing_sas_ope_info.dtos.bolsa.ExclusionReasons;
 import com.torresj.nursing_sas_ope_info.dtos.bolsa.NurseBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.bolsa.ScaleDto;
-import com.torresj.nursing_sas_ope_info.dtos.ope.NurseOpeDto;
 import com.torresj.nursing_sas_ope_info.dtos.ope.NurseOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.dtos.ope.ScoreDto;
 import com.torresj.nursing_sas_ope_info.entities.nurses.bolsa.NurseBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.nurses.ope.NurseOpeEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.ope.NurseOpeDefinitiveEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.ope.NurseOpeProvisionalEntity;
 import com.torresj.nursing_sas_ope_info.repositories.nurses.BolsaRepository;
 import com.torresj.nursing_sas_ope_info.repositories.nurses.OpeDefinitiveRepository;
 import com.torresj.nursing_sas_ope_info.repositories.nurses.OpeProvisionalRepository;
@@ -63,11 +62,11 @@ public class NursesServiceImpl implements NursesService {
                 .collect(Collectors.toSet());
     }
 
-    private NurseOpeEntity findNurseInProvisionalOpeList(NurseOpeEntity nurse) {
+    private NurseOpeProvisionalEntity findNurseInProvisionalOpeList(NurseOpeDefinitiveEntity nurse) {
         return opeProvisionalRepository.findBySurnameContainingIgnoreCaseAndDni(nurse.getSurname(), nurse.getDni()).orElse(null);
     }
 
-    private NurseOpeResponseDto nursesToResponseDto(NurseOpeEntity nurseProvisional, NurseOpeEntity finalNurse) {
+    private NurseOpeResponseDto nursesToResponseDto(NurseOpeProvisionalEntity nurseProvisional, NurseOpeDefinitiveEntity finalNurse) {
         return new NurseOpeResponseDto(
                 finalNurse.getDni(),
                 finalNurse.getName(),
