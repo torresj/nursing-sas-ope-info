@@ -1,4 +1,4 @@
-package com.torresj.nursing_sas_ope_info.dtos.bolsa;
+package com.torresj.nursing_sas_ope_info.dtos;
 
 import java.util.Map;
 

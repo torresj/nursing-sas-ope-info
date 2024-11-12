@@ -15,7 +15,7 @@ spring:
             mode: UNSPECIFIED
 #Loggin
 logging:
-  config: classpath:logback-spring-local.xml
+  config: classpath:logback-spring-prod.xml
 
 management:
   endpoints:

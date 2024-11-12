@@ -1,6 +1,6 @@
-package com.torresj.nursing_sas_ope_info.dtos.bolsa;
+package com.torresj.nursing_sas_ope_info.dtos;
 
-import com.torresj.nursing_sas_ope_info.entities.nurses.bolsa.Status;
+import com.torresj.nursing_sas_ope_info.entities.Status;
 
 public record NurseBolsaDto(
         String dni,

@@ -1,22 +1,25 @@
-package com.torresj.nursing_sas_ope_info.entities.nurses.ope;
+package com.torresj.nursing_sas_ope_info.entities;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@Entity
-@AllArgsConstructor
+@MappedSuperclass
+@SuperBuilder
 @NoArgsConstructor
-@Builder(toBuilder = true)
+@AllArgsConstructor
 @Getter
-public class NurseOpeDefinitiveEntity {
+public class SasWorker {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(updatable = false)
-    private Integer id;
+    private Long id;
 
     @Column(updatable = false)
     private String dni;
@@ -29,13 +32,4 @@ public class NurseOpeDefinitiveEntity {
 
     @Column(updatable = false)
     private String shift;
-
-    @Column(updatable = false)
-    private float total;
-
-    @Column(updatable = false)
-    private float op;
-
-    @Column(updatable = false)
-    private float con;
 }

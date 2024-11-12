@@ -1,16 +1,16 @@
 package com.torresj.nursing_sas_ope_info.services.impl;
 
-import com.torresj.nursing_sas_ope_info.dtos.bolsa.ExclusionReasons;
-import com.torresj.nursing_sas_ope_info.dtos.bolsa.NurseBolsaDto;
-import com.torresj.nursing_sas_ope_info.dtos.bolsa.ScaleDto;
-import com.torresj.nursing_sas_ope_info.dtos.ope.NurseOpeResponseDto;
-import com.torresj.nursing_sas_ope_info.dtos.ope.ScoreDto;
-import com.torresj.nursing_sas_ope_info.entities.nurses.bolsa.NurseBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.nurses.ope.NurseOpeDefinitiveEntity;
-import com.torresj.nursing_sas_ope_info.entities.nurses.ope.NurseOpeProvisionalEntity;
-import com.torresj.nursing_sas_ope_info.repositories.nurses.BolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.nurses.OpeDefinitiveRepository;
-import com.torresj.nursing_sas_ope_info.repositories.nurses.OpeProvisionalRepository;
+import com.torresj.nursing_sas_ope_info.dtos.ExclusionReasons;
+import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.ScaleDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
+import com.torresj.nursing_sas_ope_info.dtos.ScoreDto;
+import com.torresj.nursing_sas_ope_info.entities.NurseBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.NurseOpeDefinitiveEntity;
+import com.torresj.nursing_sas_ope_info.entities.NurseOpeProvisionalEntity;
+import com.torresj.nursing_sas_ope_info.repositories.NurseBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.NurseOpeDefinitiveRepository;
+import com.torresj.nursing_sas_ope_info.repositories.NurseOpeProvisionalRepository;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,13 +28,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class NursesServiceImpl implements NursesService {
 
-    private final OpeProvisionalRepository opeProvisionalRepository;
-    private final OpeDefinitiveRepository opeDefinitiveRepository;
-    private final BolsaRepository bolsaRepository;
+    private final NurseOpeProvisionalRepository nurseOpeProvisionalRepository;
+    private final NurseOpeDefinitiveRepository nurseOpeDefinitiveRepository;
+    private final NurseBolsaRepository bolsaRepository;
 
     @Override
     public List<NurseOpeResponseDto> getOpeNurses(String filter) throws IOException {
-        return opeDefinitiveRepository.findAllBySurnameContainingIgnoreCase(
+        return nurseOpeDefinitiveRepository.findAllBySurnameContainingIgnoreCase(
                 StringUtils.stripAccents(filter),
                         Limit.of(100)
                 )
@@ -45,7 +45,7 @@ public class NursesServiceImpl implements NursesService {
 
     @Override
     public NurseOpeResponseDto getOpeNurse(long id) throws IOException {
-        var finalNurse = opeDefinitiveRepository.findById(id).orElseThrow(RuntimeException::new);
+        var finalNurse = nurseOpeDefinitiveRepository.findById(id).orElseThrow(RuntimeException::new);
         return nursesToResponseDto(
                 findNurseInProvisionalOpeList(finalNurse),
                 finalNurse
@@ -63,10 +63,16 @@ public class NursesServiceImpl implements NursesService {
     }
 
     private NurseOpeProvisionalEntity findNurseInProvisionalOpeList(NurseOpeDefinitiveEntity nurse) {
-        return opeProvisionalRepository.findBySurnameContainingIgnoreCaseAndDni(nurse.getSurname(), nurse.getDni()).orElse(null);
+        return nurseOpeProvisionalRepository.findBySurnameContainingIgnoreCaseAndDni(
+                nurse.getSurname(),
+                nurse.getDni()
+                ).orElse(null);
     }
 
-    private NurseOpeResponseDto nursesToResponseDto(NurseOpeProvisionalEntity nurseProvisional, NurseOpeDefinitiveEntity finalNurse) {
+    private NurseOpeResponseDto nursesToResponseDto(
+            NurseOpeProvisionalEntity nurseProvisional,
+            NurseOpeDefinitiveEntity finalNurse
+    ) {
         return new NurseOpeResponseDto(
                 finalNurse.getDni(),
                 finalNurse.getName(),
@@ -77,13 +83,13 @@ public class NursesServiceImpl implements NursesService {
                                 nurseProvisional.getTotal(),
                         nurseProvisional.getOp(),
                         nurseProvisional.getCon(),
-                        nurseProvisional.getId())
+                        nurseProvisional.getPosition())
                         : null,
                 new ScoreDto(
                         finalNurse.getTotal(),
                         finalNurse.getOp(),
                         finalNurse.getCon(),
-                        finalNurse.getId()
+                        finalNurse.getPosition()
                 )
         );
     }

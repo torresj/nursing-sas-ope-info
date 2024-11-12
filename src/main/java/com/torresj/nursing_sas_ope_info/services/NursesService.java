@@ -1,7 +1,7 @@
 package com.torresj.nursing_sas_ope_info.services;
 
-import com.torresj.nursing_sas_ope_info.dtos.bolsa.NurseBolsaDto;
-import com.torresj.nursing_sas_ope_info.dtos.ope.NurseOpeResponseDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
 
 import java.io.IOException;
 import java.util.List;
