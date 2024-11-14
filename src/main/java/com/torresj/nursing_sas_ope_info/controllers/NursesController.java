@@ -1,6 +1,7 @@
 package com.torresj.nursing_sas_ope_info.controllers;
 
 import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseCriticsBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,27 +54,6 @@ public class NursesController {
         return ResponseEntity.ok(nurses);
     }
 
-    @Operation(summary = "Get OPE nurse by id")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Success",
-                            content = {
-                                    @Content(
-                                            mediaType = "application/json",
-                                            schema = @Schema(implementation = NurseOpeResponseDto.class))
-                            }),
-                    @ApiResponse(responseCode = "404", description = "Not found", content = @Content),
-            })
-    @GetMapping("/ope/{id}")
-    public ResponseEntity<NurseOpeResponseDto> getOpeNurse(@Parameter(description = "OPE Nurse id") @PathVariable int id) throws IOException {
-        log.info("Getting nurse {}", id);
-        var member = nursesService.getOpeNurse(id);
-        log.info("Nurse {} found: {}", id, member);
-        return ResponseEntity.ok(member);
-    }
-
     @Operation(summary = "Get Bolsa nurses by filter")
     @ApiResponses(
             value = {
@@ -92,6 +72,28 @@ public class NursesController {
     ) throws IOException {
         log.info("Getting Bolsa nurses by filter {}", filter);
         var nurses = nursesService.getBolsaNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa ciritcs nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseCriticsBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/critics")
+    public ResponseEntity<Set<NurseCriticsBolsaDto>> getBolsaCriticsNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) throws IOException {
+        log.info("Getting Bolsa critics nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaCriticsNurses(filter);
         log.info("Nurses found: {}", nurses.size());
         return ResponseEntity.ok(nurses);
     }

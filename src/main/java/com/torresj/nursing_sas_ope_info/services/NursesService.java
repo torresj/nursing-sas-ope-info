@@ -1,6 +1,7 @@
 package com.torresj.nursing_sas_ope_info.services;
 
 import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseCriticsBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
 
 import java.io.IOException;
@@ -13,4 +14,6 @@ public interface NursesService {
     NurseOpeResponseDto getOpeNurse(long id) throws IOException;
 
     Set<NurseBolsaDto> getBolsaNurses(String filter) throws IOException;
+
+    Set<NurseCriticsBolsaDto> getBolsaCriticsNurses(String filter) throws IOException;
 }

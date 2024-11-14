@@ -2,13 +2,16 @@ package com.torresj.nursing_sas_ope_info.services.impl;
 
 import com.torresj.nursing_sas_ope_info.dtos.ExclusionReasons;
 import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseCriticsBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.ScaleDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.dtos.ScoreDto;
 import com.torresj.nursing_sas_ope_info.entities.NurseBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.NurseCriticsBolsaEntity;
 import com.torresj.nursing_sas_ope_info.entities.NurseOpeDefinitiveEntity;
 import com.torresj.nursing_sas_ope_info.entities.NurseOpeProvisionalEntity;
 import com.torresj.nursing_sas_ope_info.repositories.NurseBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.NurseCriticsBolsaRepository;
 import com.torresj.nursing_sas_ope_info.repositories.NurseOpeDefinitiveRepository;
 import com.torresj.nursing_sas_ope_info.repositories.NurseOpeProvisionalRepository;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
@@ -19,6 +22,7 @@ import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,6 +35,7 @@ public class NursesServiceImpl implements NursesService {
     private final NurseOpeProvisionalRepository nurseOpeProvisionalRepository;
     private final NurseOpeDefinitiveRepository nurseOpeDefinitiveRepository;
     private final NurseBolsaRepository bolsaRepository;
+    private final NurseCriticsBolsaRepository criticsBolsaRepository;
 
     @Override
     public List<NurseOpeResponseDto> getOpeNurses(String filter) throws IOException {
@@ -56,6 +61,16 @@ public class NursesServiceImpl implements NursesService {
     public Set<NurseBolsaDto> getBolsaNurses(String filter) throws IOException {
         return bolsaRepository.findAllBySurnameContainingIgnoreCase(
                 StringUtils.stripAccents(filter),
+                        Limit.of(100))
+                .stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<NurseCriticsBolsaDto> getBolsaCriticsNurses(String filter) throws IOException {
+        return criticsBolsaRepository.findAllBySurnameContainingIgnoreCase(
+                        StringUtils.stripAccents(filter),
                         Limit.of(100))
                 .stream()
                 .map(this::entityToDto)
@@ -103,6 +118,28 @@ public class NursesServiceImpl implements NursesService {
                 nurse.getTreaty(),
                 nurse.getStatus(),
                 ExclusionReasons.getExclusionReason(nurse.getExclusionCode()),
+                new ScaleDto(
+                        nurse.getExperience(),
+                        nurse.getFormation(),
+                        nurse.getOthers(),
+                        nurse.getTotal()
+                )
+        );
+    }
+
+    private NurseCriticsBolsaDto entityToDto(NurseCriticsBolsaEntity nurse) {
+        return new NurseCriticsBolsaDto(
+                nurse.getDni(),
+                nurse.getName(),
+                nurse.getSurname(),
+                nurse.getShift(),
+                nurse.getTreaty(),
+                nurse.getGeneral_admission(),
+                nurse.getSpecific_admission(),
+                Arrays.stream(nurse.getExclusionCodes()
+                        .split(","))
+                        .map(ExclusionReasons::getExclusionReason)
+                        .collect(Collectors.toList()),
                 new ScaleDto(
                         nurse.getExperience(),
                         nurse.getFormation(),
