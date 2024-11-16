@@ -1,7 +1,7 @@
 package com.torresj.nursing_sas_ope_info.controllers;
 
 import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
-import com.torresj.nursing_sas_ope_info.dtos.NurseCriticsBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.NurseAreaBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -85,11 +84,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseCriticsBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseAreaBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa/critics")
-    public ResponseEntity<Set<NurseCriticsBolsaDto>> getBolsaCriticsNurses(
+    public ResponseEntity<Set<NurseAreaBolsaDto>> getBolsaCriticsNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) throws IOException {
         log.info("Getting Bolsa critics nurses by filter {}", filter);
@@ -97,4 +96,226 @@ public class NursesController {
         log.info("Nurses found: {}", nurses.size());
         return ResponseEntity.ok(nurses);
     }
+
+    @Operation(summary = "Get Bolsa dialysis nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseAreaBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/dialysis")
+    public ResponseEntity<Set<NurseAreaBolsaDto>> getBolsaDialysisNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa dialysis nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaDialysisNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa family nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/family")
+    public ResponseEntity<Set<NurseBolsaDto>> getBolsaFamilyNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa family nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaFamilyNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa gynecology nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/gyne")
+    public ResponseEntity<Set<NurseBolsaDto>> getBolsaGyneNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa gyne nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaGyneNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa mental health nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseAreaBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/mental")
+    public ResponseEntity<Set<NurseAreaBolsaDto>> getBolsaMentalNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa mental health nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaMentalHealthNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa neonates nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseAreaBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/neonates")
+    public ResponseEntity<Set<NurseAreaBolsaDto>> getBolsaNeonatesNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa neonates nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaNeonatesNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa nuclear medicine nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseAreaBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/nuclear")
+    public ResponseEntity<Set<NurseAreaBolsaDto>> getBolsaNuclearNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa nuclear nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaNuclearNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa pediatrician nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/pediatrician")
+    public ResponseEntity<Set<NurseBolsaDto>> getBolsaPediatricianNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa pediatrician nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaPediatricianNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa specific mental health nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/mental/specific")
+    public ResponseEntity<Set<NurseBolsaDto>> getBolsaSpecificMentalNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa specific mental health nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaSpecificMentalHealthNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa surgery room nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseAreaBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/surgery")
+    public ResponseEntity<Set<NurseAreaBolsaDto>> getBolsaSurgeryNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa surgery room nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaSurgeryRoomNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
+    @Operation(summary = "Get Bolsa work nurses by filter")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Success",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                            }),
+            })
+    @GetMapping("/bolsa/work")
+    public ResponseEntity<Set<NurseBolsaDto>> getBolsaWorkNurses(
+            @Parameter(description = "Filter by surname") @RequestParam String filter
+    ) {
+        log.info("Getting Bolsa work nurses by filter {}", filter);
+        var nurses = nursesService.getBolsaWorkNurses(filter);
+        log.info("Nurses found: {}", nurses.size());
+        return ResponseEntity.ok(nurses);
+    }
+
 }
+

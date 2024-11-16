@@ -4,7 +4,7 @@ import com.torresj.nursing_sas_ope_info.entities.Status;
 
 import java.util.List;
 
-public record NurseCriticsBolsaDto(
+public record NurseAreaBolsaDto(
         String dni,
         String name,
         String surname,
