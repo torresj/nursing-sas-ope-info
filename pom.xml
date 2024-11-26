@@ -127,7 +127,7 @@
 						</ports>
 					</container>
 					<to>
-						<image>registry.torresj.com/nursing-sas-ope-info:${project.version}</image>
+						<image>registry.torresj.es/nursing-sas-ope-info:${project.version}</image>
 					</to>
 				</configuration>
 				<executions>

@@ -5,7 +5,7 @@
 replicaCount: 3
 
 image:
-  repository: registry.torresj.com
+  repository: registry.torresj.es
   name: nursing-sas-ope-info
   version: @project.version@
   pullPolicy: IfNotPresent
@@ -43,7 +43,7 @@ ingress:
   enabled: true
   controller:
     class: nginx
-  host: api.sas.info.torresj.com
+  host: api.infosas.es
   path: /
   tls:
     enabled: true
