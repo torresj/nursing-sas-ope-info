@@ -1,39 +1,39 @@
 package com.torresj.nursing_sas_ope_info.services.impl;
 
 import com.torresj.nursing_sas_ope_info.dtos.ExclusionReasons;
-import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseAreaBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.SasBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.SasOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.dtos.ScaleDto;
-import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.dtos.ScoreDto;
-import com.torresj.nursing_sas_ope_info.entities.NurseBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseCriticsBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseDialysisBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseFamilyBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseGyneBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseMentalHealthBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseNeonatesBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseNuclearBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseOpeDefinitiveEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseOpeProvisionalEntity;
-import com.torresj.nursing_sas_ope_info.entities.NursePediatricianBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseSpecialistMentalHealthBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseSurgeryRoomBolsaEntity;
-import com.torresj.nursing_sas_ope_info.entities.NurseWorkBolsaEntity;
-import com.torresj.nursing_sas_ope_info.repositories.NurseBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseCriticsBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseDialysisBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseFamilyBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseGyneBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseMentalHealthBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseNeonatesBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseNuclearBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseOpeDefinitiveRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseOpeProvisionalRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NursePediatricianBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseSpecialistMentalHealthBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseSurgeryRoomBolsaRepository;
-import com.torresj.nursing_sas_ope_info.repositories.NurseWorkBolsaRepository;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseCriticsBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseDialysisBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseFamilyBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseGyneBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseMentalHealthBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseNeonatesBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseNuclearBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseOpeDefinitiveEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseOpeProvisionalEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NursePediatricianBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseSpecialistMentalHealthBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseSurgeryRoomBolsaEntity;
+import com.torresj.nursing_sas_ope_info.entities.nurses.NurseWorkBolsaEntity;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseCriticsBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseDialysisBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseFamilyBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseGyneBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseMentalHealthBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseNeonatesBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseNuclearBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseOpeDefinitiveRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseOpeProvisionalRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NursePediatricianBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseSpecialistMentalHealthBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseSurgeryRoomBolsaRepository;
+import com.torresj.nursing_sas_ope_info.repositories.nurses.NurseWorkBolsaRepository;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,7 +67,7 @@ public class NursesServiceImpl implements NursesService {
     private final NurseWorkBolsaRepository nurseWorkBolsaRepository;
 
     @Override
-    public List<NurseOpeResponseDto> getOpeNurses(String filter) {
+    public List<SasOpeResponseDto> getOpeNurses(String filter) {
         return nurseOpeDefinitiveRepository.findAllBySurnameContainingIgnoreCase(
                 StringUtils.stripAccents(filter),
                         Limit.of(100)
@@ -78,7 +78,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public NurseOpeResponseDto getOpeNurse(long id) {
+    public SasOpeResponseDto getOpeNurse(long id) {
         var finalNurse = nurseOpeDefinitiveRepository.findById(id).orElseThrow(RuntimeException::new);
         return nursesToResponseDto(
                 findNurseInProvisionalOpeList(finalNurse),
@@ -87,7 +87,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public Set<NurseBolsaDto> getBolsaNurses(String filter){
+    public Set<SasBolsaDto> getBolsaNurses(String filter){
         return bolsaRepository.findAllBySurnameContainingIgnoreCase(
                 StringUtils.stripAccents(filter),
                         Limit.of(100))
@@ -117,7 +117,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public Set<NurseBolsaDto> getBolsaFamilyNurses(String filter) {
+    public Set<SasBolsaDto> getBolsaFamilyNurses(String filter) {
         return familyBolsaRepository.findAllBySurnameContainingIgnoreCase(
                         StringUtils.stripAccents(filter),
                         Limit.of(100))
@@ -127,7 +127,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public Set<NurseBolsaDto> getBolsaGyneNurses(String filter) {
+    public Set<SasBolsaDto> getBolsaGyneNurses(String filter) {
         return gyneBolsaRepository.findAllBySurnameContainingIgnoreCase(
                         StringUtils.stripAccents(filter),
                         Limit.of(100))
@@ -167,7 +167,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public Set<NurseBolsaDto> getBolsaPediatricianNurses(String filter) {
+    public Set<SasBolsaDto> getBolsaPediatricianNurses(String filter) {
         return pediatricianBolsaRepository.findAllBySurnameContainingIgnoreCase(
                         StringUtils.stripAccents(filter),
                         Limit.of(100))
@@ -177,7 +177,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public Set<NurseBolsaDto> getBolsaSpecificMentalHealthNurses(String filter) {
+    public Set<SasBolsaDto> getBolsaSpecificMentalHealthNurses(String filter) {
         return specialistMentalHealthBolsaRepository.findAllBySurnameContainingIgnoreCase(
                         StringUtils.stripAccents(filter),
                         Limit.of(100))
@@ -197,7 +197,7 @@ public class NursesServiceImpl implements NursesService {
     }
 
     @Override
-    public Set<NurseBolsaDto> getBolsaWorkNurses(String filter) {
+    public Set<SasBolsaDto> getBolsaWorkNurses(String filter) {
         return nurseWorkBolsaRepository.findAllBySurnameContainingIgnoreCase(
                         StringUtils.stripAccents(filter),
                         Limit.of(100))
@@ -213,11 +213,11 @@ public class NursesServiceImpl implements NursesService {
                 ).orElse(null);
     }
 
-    private NurseOpeResponseDto nursesToResponseDto(
+    private SasOpeResponseDto nursesToResponseDto(
             NurseOpeProvisionalEntity nurseProvisional,
             NurseOpeDefinitiveEntity finalNurse
     ) {
-        return new NurseOpeResponseDto(
+        return new SasOpeResponseDto(
                 finalNurse.getDni(),
                 finalNurse.getName(),
                 finalNurse.getSurname(),
@@ -238,8 +238,8 @@ public class NursesServiceImpl implements NursesService {
         );
     }
 
-    private NurseBolsaDto entityToDto(NurseBolsaEntity nurse) {
-        return new NurseBolsaDto(
+    private SasBolsaDto entityToDto(NurseBolsaEntity nurse) {
+        return new SasBolsaDto(
                 nurse.getDni(),
                 nurse.getName(),
                 nurse.getSurname(),
@@ -256,8 +256,8 @@ public class NursesServiceImpl implements NursesService {
         );
     }
 
-    private NurseBolsaDto entityToDto(NurseFamilyBolsaEntity nurse) {
-        return new NurseBolsaDto(
+    private SasBolsaDto entityToDto(NurseFamilyBolsaEntity nurse) {
+        return new SasBolsaDto(
                 nurse.getDni(),
                 nurse.getName(),
                 nurse.getSurname(),
@@ -274,8 +274,8 @@ public class NursesServiceImpl implements NursesService {
         );
     }
 
-    private NurseBolsaDto entityToDto(NurseGyneBolsaEntity nurse) {
-        return new NurseBolsaDto(
+    private SasBolsaDto entityToDto(NurseGyneBolsaEntity nurse) {
+        return new SasBolsaDto(
                 nurse.getDni(),
                 nurse.getName(),
                 nurse.getSurname(),
@@ -292,8 +292,8 @@ public class NursesServiceImpl implements NursesService {
         );
     }
 
-    private NurseBolsaDto entityToDto(NurseWorkBolsaEntity nurse) {
-        return new NurseBolsaDto(
+    private SasBolsaDto entityToDto(NurseWorkBolsaEntity nurse) {
+        return new SasBolsaDto(
                 nurse.getDni(),
                 nurse.getName(),
                 nurse.getSurname(),
@@ -310,8 +310,8 @@ public class NursesServiceImpl implements NursesService {
         );
     }
 
-    private NurseBolsaDto entityToDto(NursePediatricianBolsaEntity nurse) {
-        return new NurseBolsaDto(
+    private SasBolsaDto entityToDto(NursePediatricianBolsaEntity nurse) {
+        return new SasBolsaDto(
                 nurse.getDni(),
                 nurse.getName(),
                 nurse.getSurname(),
@@ -328,8 +328,8 @@ public class NursesServiceImpl implements NursesService {
         );
     }
 
-    private NurseBolsaDto entityToDto(NurseSpecialistMentalHealthBolsaEntity nurse) {
-        return new NurseBolsaDto(
+    private SasBolsaDto entityToDto(NurseSpecialistMentalHealthBolsaEntity nurse) {
+        return new SasBolsaDto(
                 nurse.getDni(),
                 nurse.getName(),
                 nurse.getSurname(),

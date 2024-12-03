@@ -1,27 +1,26 @@
 package com.torresj.nursing_sas_ope_info.services;
 
-import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.SasBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseAreaBolsaDto;
-import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
+import com.torresj.nursing_sas_ope_info.dtos.SasOpeResponseDto;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
 public interface NursesService {
-    List<NurseOpeResponseDto> getOpeNurses(String filter);
+    List<SasOpeResponseDto> getOpeNurses(String filter);
 
-    NurseOpeResponseDto getOpeNurse(long id);
+    SasOpeResponseDto getOpeNurse(long id);
 
-    Set<NurseBolsaDto> getBolsaNurses(String filter);
+    Set<SasBolsaDto> getBolsaNurses(String filter);
 
     Set<NurseAreaBolsaDto> getBolsaCriticsNurses(String filter);
 
     Set<NurseAreaBolsaDto> getBolsaDialysisNurses(String filter);
 
-    Set<NurseBolsaDto> getBolsaFamilyNurses(String filter);
+    Set<SasBolsaDto> getBolsaFamilyNurses(String filter);
 
-    Set<NurseBolsaDto> getBolsaGyneNurses(String filter);
+    Set<SasBolsaDto> getBolsaGyneNurses(String filter);
 
     Set<NurseAreaBolsaDto> getBolsaMentalHealthNurses(String filter);
 
@@ -29,11 +28,11 @@ public interface NursesService {
 
     Set<NurseAreaBolsaDto> getBolsaNuclearNurses(String filter);
 
-    Set<NurseBolsaDto> getBolsaPediatricianNurses(String filter);
+    Set<SasBolsaDto> getBolsaPediatricianNurses(String filter);
 
-    Set<NurseBolsaDto> getBolsaSpecificMentalHealthNurses(String filter);
+    Set<SasBolsaDto> getBolsaSpecificMentalHealthNurses(String filter);
 
     Set<NurseAreaBolsaDto> getBolsaSurgeryRoomNurses(String filter);
 
-    Set<NurseBolsaDto> getBolsaWorkNurses(String filter);
+    Set<SasBolsaDto> getBolsaWorkNurses(String filter);
 }

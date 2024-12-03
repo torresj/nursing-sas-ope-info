@@ -1,8 +1,8 @@
 package com.torresj.nursing_sas_ope_info.controllers;
 
-import com.torresj.nursing_sas_ope_info.dtos.NurseBolsaDto;
+import com.torresj.nursing_sas_ope_info.dtos.SasBolsaDto;
 import com.torresj.nursing_sas_ope_info.dtos.NurseAreaBolsaDto;
-import com.torresj.nursing_sas_ope_info.dtos.NurseOpeResponseDto;
+import com.torresj.nursing_sas_ope_info.dtos.SasOpeResponseDto;
 import com.torresj.nursing_sas_ope_info.services.NursesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -40,11 +40,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseOpeResponseDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasOpeResponseDto.class)))
                             }),
             })
     @GetMapping("/ope")
-    public ResponseEntity<List<NurseOpeResponseDto>> getOpeNurses(
+    public ResponseEntity<List<SasOpeResponseDto>> getOpeNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) throws IOException {
         log.info("Getting OPE nurses by filter {}", filter);
@@ -62,11 +62,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa")
-    public ResponseEntity<Set<NurseBolsaDto>> getBolsaNurses(
+    public ResponseEntity<Set<SasBolsaDto>> getBolsaNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) throws IOException {
         log.info("Getting Bolsa nurses by filter {}", filter);
@@ -128,11 +128,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa/family")
-    public ResponseEntity<Set<NurseBolsaDto>> getBolsaFamilyNurses(
+    public ResponseEntity<Set<SasBolsaDto>> getBolsaFamilyNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) {
         log.info("Getting Bolsa family nurses by filter {}", filter);
@@ -150,11 +150,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa/gyne")
-    public ResponseEntity<Set<NurseBolsaDto>> getBolsaGyneNurses(
+    public ResponseEntity<Set<SasBolsaDto>> getBolsaGyneNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) {
         log.info("Getting Bolsa gyne nurses by filter {}", filter);
@@ -238,11 +238,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa/pediatrician")
-    public ResponseEntity<Set<NurseBolsaDto>> getBolsaPediatricianNurses(
+    public ResponseEntity<Set<SasBolsaDto>> getBolsaPediatricianNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) {
         log.info("Getting Bolsa pediatrician nurses by filter {}", filter);
@@ -260,11 +260,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa/mental/specific")
-    public ResponseEntity<Set<NurseBolsaDto>> getBolsaSpecificMentalNurses(
+    public ResponseEntity<Set<SasBolsaDto>> getBolsaSpecificMentalNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) {
         log.info("Getting Bolsa specific mental health nurses by filter {}", filter);
@@ -304,11 +304,11 @@ public class NursesController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            array = @ArraySchema(schema = @Schema(implementation = NurseBolsaDto.class)))
+                                            array = @ArraySchema(schema = @Schema(implementation = SasBolsaDto.class)))
                             }),
             })
     @GetMapping("/bolsa/work")
-    public ResponseEntity<Set<NurseBolsaDto>> getBolsaWorkNurses(
+    public ResponseEntity<Set<SasBolsaDto>> getBolsaWorkNurses(
             @Parameter(description = "Filter by surname") @RequestParam String filter
     ) {
         log.info("Getting Bolsa work nurses by filter {}", filter);
