@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @RequiredArgsConstructor
-public class NursesControllerAspect {
+public class MetricsControllerAspect {
 
     private final MeterRegistry meterRegistry;
 
@@ -22,6 +22,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /ope endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -32,6 +33,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /bolsa endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -42,6 +44,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /critics endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -52,6 +55,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /dialysis endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -62,6 +66,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /family endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -72,6 +77,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /gyne endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -82,6 +88,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /mental endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -92,6 +99,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /neonates endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -102,6 +110,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /nuclear endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -112,6 +121,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /pediatrician endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -122,6 +132,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /mental/specific endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -132,6 +143,7 @@ public class NursesControllerAspect {
                 .description("a number of requests to /surgery endpoint")
                 .register(meterRegistry);
         counter.increment();
+        updateTotalCount();
     }
 
     @Before(
@@ -140,6 +152,36 @@ public class NursesControllerAspect {
     public void updateBolsaWorkEndpointCounter(){
         Counter counter = Counter.builder("work_calls")
                 .description("a number of requests to /work endpoint")
+                .register(meterRegistry);
+        counter.increment();
+        updateTotalCount();
+    }
+
+    @Before(
+            value = "execution(* com.torresj.nursing_sas_ope_info.services.TcaesService.getBolsaTcaes(..))"
+    )
+    public void updateTCAEBolsaEndpointCounter(){
+        Counter counter = Counter.builder("tcae_bolsa_calls")
+                .description("a number of requests to /tcae/bolsa endpoint")
+                .register(meterRegistry);
+        counter.increment();
+        updateTotalCount();
+    }
+
+    @Before(
+            value = "execution(* com.torresj.nursing_sas_ope_info.services.TcaesService.getOpeTcaes(..))"
+    )
+    public void updateTCAEOpeEndpointCounter(){
+        Counter counter = Counter.builder("tcae_ope_calls")
+                .description("a number of requests to /tcae/ope endpoint")
+                .register(meterRegistry);
+        counter.increment();
+        updateTotalCount();
+    }
+
+    private void updateTotalCount(){
+        Counter counter = Counter.builder("infosas")
+                .description("a number of requests to infosas")
                 .register(meterRegistry);
         counter.increment();
     }
